@@ -3,111 +3,107 @@ import java.util.Scanner;
 
 public class Game {
     //Висилица
-    private String[] hangman =  new String[]{
+    private String[] hangman = new String[]{
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |\n" +
-                "     |\n" +
-                "     |\n" +
-                "     |\n" +
-                "     |\n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |\n" +
-                "     |\n" +
-                "     |\n" +
-                "     |\n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |    |\n" +
-                "     | \n" +
-                "     |   \n" +
-                "     |    \n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |    |\n" +
+                    "     | \n" +
+                    "     |   \n" +
+                    "     |    \n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |   /|\n" +
-                "     |   \n" +
-                "     |   \n" +
-                "     |   \n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |   /|\n" +
+                    "     |   \n" +
+                    "     |   \n" +
+                    "     |   \n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |   /|\\\n" +
-                "     |   \n" +
-                "     |   \n" +
-                "     |     \n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |   /|\\\n" +
+                    "     |   \n" +
+                    "     |   \n" +
+                    "     |     \n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |   /|\\\n" +
-                "     |   /\n" +
-                "     |   \n" +
-                "     |    \n" +
-                "    ----------",
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |   /|\\\n" +
+                    "     |   /\n" +
+                    "     |   \n" +
+                    "     |    \n" +
+                    "    ----------",
 
-                "     ------\n" +
-                "     |    |\n" +
-                "     |    O\n" +
-                "     |   /|\\\n" +
-                "     |   / \\\n" +
-                "     |   \n" +
-                "     |   \n" +
-                "    ----------"
+            "     ------\n" +
+                    "     |    |\n" +
+                    "     |    O\n" +
+                    "     |   /|\\\n" +
+                    "     |   / \\\n" +
+                    "     |   \n" +
+                    "     |   \n" +
+                    "    ----------"
     };
 
 
     //Количество неверных попыток
-    private final int maxWrong = hangman.length -1;
+    private final int maxWrong = hangman.length - 1;
 
     // Количество неверных предположений, сделанных игроком
     private int wrong = 0;
 
     //Использованные буквы введеные пользователем
-     private ArrayList<Character> charUserList = new ArrayList<>();
+    private ArrayList<Character> charUserList = new ArrayList<>();
 
     //Загаданнео слово
     private StringBuilder randomWord;
 
 
     //Строка содержащая "_"
-    private StringBuilder so_far ;
+    private StringBuilder so_far;
 
     //Статус игры
     private boolean status = true;
-    private Words _word ;
-    public  Game(){
-         _word = new Words();
+    private Words _word;
+
+    public Game() {
+        _word = new Words();
     }
 
-    public void  Start(){
+    public void Start() {
         wrong = 0;
         charUserList.clear();
         randomWord = new StringBuilder(_word.RandomWord());
         String s = "_".repeat(randomWord.length());
         so_far = new StringBuilder(s);
         status = true;
-
         System.out.println("Добро пожаловать в игру ВИСИЛИЦА");
-
         Play();
-
-
     }
-
 
 
     private void Play() {
@@ -134,12 +130,12 @@ public class Game {
             //Добавляем букву в список использованных
             charUserList.add(charUse);
 
-            int  numberMatches= 0;
+            int numberMatches = 0;
             for (int i = 0; i < randomWord.length(); i++) {
 
-                if(randomWord.charAt(i) == charUse){
+                if (randomWord.charAt(i) == charUse) {
                     so_far.setCharAt(i, charUse);
-                    numberMatches +=1;
+                    numberMatches += 1;
                 }
             }
 
@@ -147,14 +143,9 @@ public class Game {
 
                 System.out.println("Извините такой буквы нету в слове!");
                 wrong += 1;
-
-
             } else {
-
                 System.out.println("Да, буква " + charUse + " имется в слове");
-
             }
-
         }
 
         if (wrong == maxWrong) {
@@ -163,18 +154,13 @@ public class Game {
             System.out.println("Слово было: " + randomWord);
 
 
-
         } else {
             System.out.println("Поздравляем с победой");
             System.out.println("Количество ошибок " + wrong);
-
         }
         System.out.println("Хотите начать сначала? Для того что бы начать игру заново введите Да, если хотите выйти введите Нет ");
         String answer = scanner.next();
-        status = answer.toLowerCase().equals("да") ? true:false ;
-
-
-
+        status = answer.toLowerCase().equals("да") ? true : false;
     }
 
     public boolean getStatus() {

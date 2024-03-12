@@ -7,9 +7,10 @@ public class Words {
 
     private ArrayList<String> wordList = new ArrayList<>();
 
-    public  Words(){
+    public Words() {
         ReaderFile();
     }
+
     private void ReaderFile() {
 
         try (InputStream is = this.getClass().getResourceAsStream("/words.txt");
@@ -30,11 +31,11 @@ public class Words {
 
     }
 
-    public String RandomWord(){
+    public String RandomWord() {
 
         Random random_method = new Random();
         int index = random_method.nextInt(wordList.size());
 
-        return  wordList.get(index);
+        return wordList.get(index);
     }
 }
