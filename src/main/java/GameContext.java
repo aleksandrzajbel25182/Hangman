@@ -158,27 +158,91 @@ public class GameContext {
             } else {
                 charUserList.add(userAnswer);
 
-                int numberMatches = 0;
-                for (int i = 0; i < randomWord.length(); i++) {
-
-                    if (randomWord.charAt(i) == userAnswer) {
-                        maskWord.setCharAt(i, userAnswer);
-                        numberMatches += 1;
-                    }
-                }
-                if (numberMatches == 0) {
-
-//                System.out.println("Извините такой буквы нету в слове!");
-                    wrong += 1;
-                }
-                state = new PrintHangman();
+                state = new CheckCharUser();
             }
 
         }
 
         @Override
         public String getStateInfo() {
-            return "UserInputState";
+            return null;
+        }
+    }
+
+    private class CheckCharUser extends State {
+
+        @Override
+        public void executeImpl() {
+
+            int numberMatches = 0;
+            for (int i = 0; i < randomWord.length(); i++) {
+
+                if (randomWord.charAt(i) == userAnswer) {
+                    maskWord.setCharAt(i, userAnswer);
+                    numberMatches += 1;
+                }
+            }
+            if (numberMatches == 0) {
+                wrong += 1;
+                state = new LoseAttemptState();
+            } else {
+                state = new WinAttemptState();
+            }
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "";
+        }
+    }
+
+    private abstract class AttemptState extends State {
+
+        @Override
+        public void executeImpl() {
+            if (maskWord.toString().contentEquals(randomWord)) {
+                state = new WinState();
+            } else {
+                state = new UserInputState();
+            }
+        }
+    }
+
+    private class LoseAttemptState extends State {
+
+        @Override
+        public void executeImpl() {
+            state = new PrintHangman();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "Извините такой буквы нету в слове!";
+        }
+    }
+
+    private class WinAttemptState extends State {
+
+        @Override
+        public void executeImpl() {
+            state = new PrintHangman();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "Да, буква " + userAnswer + " имется в слове";
+        }
+    }
+
+    public class WinState extends State {
+        @Override
+        public void executeImpl() {
+            state = new EndState();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "Поздравляем с победой";
         }
     }
 
