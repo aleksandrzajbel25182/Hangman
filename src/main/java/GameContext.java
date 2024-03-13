@@ -1,6 +1,7 @@
 import com.sun.nio.sctp.SctpChannel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameContext {
@@ -82,6 +83,26 @@ public class GameContext {
 
     private Character userAnswer;
 
+    private Words wordChoice;
+
+    private StringBuilder randomWord;
+
+    private StringBuilder maskWord;
+
+    public GameContext() {
+        this.state = new StartState();
+    }
+
+    public void start() {
+        while (!(this.state instanceof EndState)) {
+            try {
+                this.state.execute();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public abstract class State {
 
         public void execute() {
@@ -94,34 +115,124 @@ public class GameContext {
         public abstract String getStateInfo();
     }
 
-    private class StartState extends State{
+    private class StartState extends State {
 
         @Override
         public void executeImpl() {
-
+            scanner = new Scanner((System.in));
+            wordChoice = new Words();
+            randomWord = new StringBuilder(wordChoice.RandomWord());
+            String s = "_".repeat(randomWord.length());
+            maskWord = new StringBuilder(s);
+            state = new PrintHangman();
         }
 
         @Override
         public String getStateInfo() {
-            return null;
+            return "Добро пожаловать в Виселицу";
         }
     }
-    private class UserInputState extends State{
+
+    private class EndState extends State {
+
+        @Override
+        public void executeImpl() {
+            scanner.close();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "";
+        }
+
+    }
+
+    private class UserInputState extends State {
 
         @Override
         public void executeImpl() {
             userAnswer = scanner.next().charAt(0);
 
-            while (charUserList.contains(userAnswer)) {
-                System.out.println("\nВы уже вводили такую букву ");
-                state  = new UserInput();
+            if (charUserList.contains(userAnswer)) {
+                state = new CheckDuplicate();
+            } else {
+                charUserList.add(userAnswer);
+
+                int numberMatches = 0;
+                for (int i = 0; i < randomWord.length(); i++) {
+
+                    if (randomWord.charAt(i) == userAnswer) {
+                        maskWord.setCharAt(i, userAnswer);
+                        numberMatches += 1;
+                    }
+                }
+                if (numberMatches == 0) {
+
+//                System.out.println("Извините такой буквы нету в слове!");
+                    wrong += 1;
+                }
+                state = new PrintHangman();
             }
-            charUserList.add(userAnswer);
+
         }
 
         @Override
         public String getStateInfo() {
-            return null;
+            return "UserInputState";
+        }
+    }
+
+    private class CheckDuplicate extends State {
+
+        @Override
+        public void executeImpl() {
+            state = new UserInputState();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "\nВы уже вводили такую букву";
+        }
+    }
+
+    private class MaskWord extends State {
+
+        @Override
+        public void executeImpl() {
+            state = new UserInputState();
+        }
+
+        @Override
+        public String getStateInfo() {
+
+            return "\nНа данный момент слово выглядит так: " + maskWord + "\nВведите свое предположение: ";
+        }
+    }
+
+    private class PrintDuplicate extends State {
+
+        @Override
+        public void executeImpl() {
+            state = new MaskWord();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "Вы использовали следующие буквы: " + Arrays.toString(charUserList.toArray());
+        }
+    }
+
+    private class PrintHangman extends State {
+
+        @Override
+        public void executeImpl() {
+
+            state = new PrintDuplicate();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return hangman[wrong];
         }
     }
 }
