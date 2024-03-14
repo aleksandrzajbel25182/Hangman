@@ -192,20 +192,9 @@ public class GameContext {
 
         @Override
         public String getStateInfo() {
-            return "";
+            return null;
         }
-    }
 
-    private abstract class AttemptState extends State {
-
-        @Override
-        public void executeImpl() {
-            if (maskWord.toString().contentEquals(randomWord)) {
-                state = new WinState();
-            } else {
-                state = new UserInputState();
-            }
-        }
     }
 
     private class LoseAttemptState extends State {
@@ -234,7 +223,7 @@ public class GameContext {
         }
     }
 
-    public class WinState extends State {
+    private class WinGameState extends State {
         @Override
         public void executeImpl() {
             state = new EndState();
@@ -243,6 +232,18 @@ public class GameContext {
         @Override
         public String getStateInfo() {
             return "Поздравляем с победой";
+        }
+    }
+
+    private class LoseGameState extends State {
+        @Override
+        public void executeImpl() {
+            state = new EndState();
+        }
+
+        @Override
+        public String getStateInfo() {
+            return "Тебя повесили. Слово было: " + randomWord.toString();
         }
     }
 
@@ -291,7 +292,14 @@ public class GameContext {
         @Override
         public void executeImpl() {
 
-            state = new PrintDuplicate();
+            if (wrong == MAX_WRONG) {
+                state = new LoseGameState();
+            } else if (maskWord == randomWord) {
+                state = new WinGameState();
+            } else {
+                state = new PrintDuplicate();
+            }
+
         }
 
         @Override

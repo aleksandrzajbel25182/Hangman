@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c40e8e1-4641-40c3-b006-252499b7f99a" name="Changes" comment="Добавил пару состояние на проверку и вывод текущего состояния виселицы">
+    <list default="true" id="0c40e8e1-4641-40c3-b006-252499b7f99a" name="Changes" comment="Добавил пару состояний CheckCharUser: &#10;для проверки буквы в слове.&#10;LoseAttemptState: &#10;если буква не имеется в слове оповещает об этот &#10;WinAttemptState:&#10;поздравляет, что имеется такая буква в слове.&#10;класс AttemptState не понял для чего уже создал">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameContext.java" afterDir="false" />
     </list>
@@ -30,12 +31,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "aleksandrzajbel25182"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;aleksandrzajbel25182&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="recentNewPullRequestHead">
       <RepoCoordinatesHolder>
@@ -53,18 +54,25 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2dex4mJm5txQLNoHRWL84r6hZfv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Run",
+    "Application.Application.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "fix__OOP",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/zai/IdeaProjects/Hangman",
     "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
@@ -75,8 +83,21 @@
   </component>
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="liberica-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Application" />
       <module name="Hangman" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -143,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710321825491</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Добавил пару состояний CheckCharUser: &#10;для проверки буквы в слове.&#10;LoseAttemptState: &#10;если буква не имеется в слове оповещает об этот &#10;WinAttemptState:&#10;поздравляет, что имеется такая буква в слове.&#10;класс AttemptState не понял для чего уже создал">
+      <option name="closed" value="true" />
+      <created>1710324407606</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710324407606</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,6 +192,38 @@
     <MESSAGE value="&#10;Чутка отформатировал код, стандартным способом IDE" />
     <MESSAGE value="Создал класс GameContext, а так же вложенные классы state,StartState, UserInputStateсобом IDE" />
     <MESSAGE value="Добавил пару состояние на проверку и вывод текущего состояния виселицы" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил пару состояние на проверку и вывод текущего состояния виселицы" />
+    <MESSAGE value="Добавил пару состояний CheckCharUser: &#10;для проверки буквы в слове.&#10;LoseAttemptState: &#10;если буква не имеется в слове оповещает об этот &#10;WinAttemptState:&#10;поздравляет, что имеется такая буква в слове.&#10;класс AttemptState не понял для чего уже создал" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил пару состояний CheckCharUser: &#10;для проверки буквы в слове.&#10;LoseAttemptState: &#10;если буква не имеется в слове оповещает об этот &#10;WinAttemptState:&#10;поздравляет, что имеется такая буква в слове.&#10;класс AttemptState не понял для чего уже создал" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GameContext.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GameContext.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GameContext.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GameContext.java</url>
+          <line>272</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GameContext.java</url>
+          <line>266</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
